@@ -1,20 +1,20 @@
 package com.example.demo;
 
 import com.example.demo.entity.Member;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-@SpringBootApplication
-public class DemoApplication {
+@SpringBootTest
+class EntityTest {
 
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-
+    @Test
+    void saveMemberTest(){
+        new Persistence();
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jongmin");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
@@ -30,6 +30,7 @@ public class DemoApplication {
         }finally {
             entityManager.close();
         }
+        entityManagerFactory.close();
     }
 
 }

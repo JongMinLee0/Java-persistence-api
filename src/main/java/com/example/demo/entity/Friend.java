@@ -12,4 +12,11 @@ public class Friend {
     private String friendName;
     private String friendPhone;
 
+    public Friend(){}
+
+    public Friend(String friendName, String friendPhone){
+        this.friendName = friendName;
+        this.friendPhone = friendPhone;
+    }
+
 }

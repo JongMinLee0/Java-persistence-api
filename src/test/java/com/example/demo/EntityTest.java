@@ -1,36 +1,30 @@
 package com.example.demo;
 
-import com.example.demo.entity.Friend;
 import com.example.demo.entity.Member;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-@SpringBootApplication
-public class DemoApplication {
+@SpringBootTest
+class EntityTest {
 
-    public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
-
+    @Test
+    void saveMemberTest(){
+        new Persistence();
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jongmin");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
-
-        // 트랜잭션 시작
         transaction.begin();
         try{
             Member member = new Member();
             member.setName("jongmin");
-            member.setAge(30);
+            entityManager.persist(member);
 
-            Friend friend = new Friend();
-            friend.setName("park");
-            entityManager.persist(member); // 영구저장
-            transaction.commit(); // 커밋
+            transaction.commit();
         }catch (Exception e){
             transaction.rollback();
         }finally {

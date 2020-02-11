@@ -38,14 +38,13 @@ public class DemoApplication {
 
             Member findMember = entityManager.find(Member.class, member.getMember_id());
             Club findClub = findMember.getClub();
-            System.out.println("Club Name : " + findClub.getClubName());
 
             List<Member> members = findClub.getMemberList();
             for(Member member1 : members){
                 System.out.println("Member Name : " + member1.getName());
             }
 
-            transaction.commit(); // 커밋
+            transaction.commit();
         }catch (Exception e){
             transaction.rollback();
         }finally {

@@ -43,6 +43,16 @@ public class DemoApplication {
             for(Member member1 : members){
                 System.out.println("Member Name : " + member1.getName());
             }
+//            Club club = new Club("baskball");
+//            entityManager.persist(club);
+//
+//            entityManager.flush();
+//            entityManager.clear();
+//
+//            Club club2 = entityManager.find(Club.class, club.getClub_id());
+//            System.out.println("Club Name1 : " + club2.getClubName());
+//
+//            club2.setClubName("BASEBALL");
 
             transaction.commit();
         }catch (Exception e){

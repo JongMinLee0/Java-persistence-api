@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long member_id;
 
     private String name;
     private int age;
@@ -22,5 +21,17 @@ public class Member {
 
     @Embedded
     private Friend friends;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "club_id")
+    private Club club;
+
+    public Member(){}
+
+    public Member(String name, int age, Friend friend){
+        this.name = name;
+        this.age = age;
+        this.friends = friend;
+    }
 
 }
